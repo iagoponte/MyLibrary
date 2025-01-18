@@ -1,10 +1,9 @@
+import RoutesApp from "./services/RoutesApp";
 
-function App() {
+
+export default function App() {
   return (
-    <div>
-      Hello word
-    </div>
+    <RoutesApp/>
   );
 }
 
-export default App;
