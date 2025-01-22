@@ -1,7 +1,10 @@
+import "./home.css";
+
+
 export default function Home(){
     return(
         <div>
-            Pagina home
+            Pagina Home
         </div>
     );
 }
