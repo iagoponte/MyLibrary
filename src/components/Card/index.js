@@ -1,15 +1,36 @@
-export default function Card() {
+import "./Card.css";
+
+import ModalEdit from "../ModalEdit";
+import ModalDelete from "../ModalDelete";
+
+
+export default function Card(props) {
     const estilo = {
         width: "18rem",
     }
+
     return (
+
         <div className="card" style={estilo}>
-            <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..."/>
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+            <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..." />
+            <div className="card-body">
+                <h5 className="card-title">{props.conteudo.titulo}</h5>
+                <p className="">R${props.conteudo.valor.toFixed(2)}</p>
+                <p className="">frete gratis</p>
+                <div className="d-flex">
+                    <div className="ms-auto">
+
+
+                        <div className="d-inline me-1">
+                            <ModalEdit conteudo = {props.conteudo}/>
+                        </div>
+
+                        <div className="d-inline">
+                            <ModalDelete conteudo = {props.conteudo}/>
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
     );
 }
