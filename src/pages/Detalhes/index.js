@@ -4,8 +4,9 @@ import {useNavigatem, useParams} from 'react-router-dom'
 
 export default function Detalhes(){
     const { livroID } = useParams()
+    console.log(livroID)
     const [livro, setLivro] = useState(null)
-
+    //<Link to={`/detalhes/${index}`}>
     //const navegarDetalhe = useNavigate() → não sei se vai precisar aqui ou na página dos cards / cadastro
 
     //usar o navegarDetalhe para criar uma rota específica para o livro clicado no card, após recuperá-lo do localstorage?

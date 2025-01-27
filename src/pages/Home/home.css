@@ -1,0 +1,9 @@
+.container-home {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.card-home {
+    margin: 2rem 0;
+}
