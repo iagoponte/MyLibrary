@@ -1,6 +1,7 @@
 .container-header{
     background-color: #7B3B3B;
     color: #B9D7D9;
+    
 }
 .container-header a{
     /* background-color: #7B3B3B; */
@@ -9,4 +10,24 @@
 .container-header input{
     opacity: 0.4;
     color: #B9D7D9;
+}
+#navbarSupportedContent {
+    width: auto;
+    flex-grow: 0 !important
+}
+
+@media (min-width: 768px) {
+    .container-fluid {
+        justify-content: center !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .container-fluid{
+        justify-content: space-between;
+    }
+
+    .nav-itens-button {
+        display: none;
+    }
 }
