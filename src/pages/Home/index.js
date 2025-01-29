@@ -1,6 +1,7 @@
 import "./home.css";
 import Card from "../../components/Card";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const bd = [
@@ -47,7 +48,7 @@ export default function Home(){
             {bd.map((book, index)=>{
                 return(
                     <div className="card-home" key={index}>
-                        <Card conteudo = {book}/> 
+                        <Card conteudo = {book}/>
                     </div>
                 );
             })

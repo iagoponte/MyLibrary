@@ -2,6 +2,7 @@ import "./Card.css";
 
 import ModalEdit from "../ModalEdit";
 import ModalDelete from "../ModalDelete";
+import { Link } from "react-router-dom";
 
 
 export default function Card(props) {
@@ -14,7 +15,7 @@ export default function Card(props) {
         <div className="card card-container" style={estilo}>
             <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..." />
             <div className="card-body">
-                <h5 className="card-title">{props.conteudo.titulo}</h5>
+                <Link to={`/detalhes/${props.conteudo.id}`}><h5 className="card-title">{props.conteudo.titulo}</h5></Link>
                 <p className="">R${props.conteudo.valor.toFixed(2)}</p>
                 <p className="">frete gratis</p>
                 <div className="d-flex">
