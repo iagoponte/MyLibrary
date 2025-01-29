@@ -12,6 +12,7 @@ export default function Detalhes(){
     //usar o navegarDetalhe para criar uma rota específica para o livro clicado no card, após recuperá-lo do localstorage?
     //aconteceria na função que trás o livro do local storage.
 
+    /*
     useEffect(() => {
         const pegarLivroStorage = localStorage.getItem('Nome_do_livro_selecionado')
         if (livroID) {
@@ -22,13 +23,27 @@ export default function Detalhes(){
     if (!livro) {
         return <p>Carregando os detalhes do livro...</p>
     }
+    */
+
+    const Livro = {
+        titulo: 'Menu Degustação',
+        autor: 'Iago',
+        lancamento: {
+            ano: 1999,
+            mes: 'maio',
+            dia: 25
+        },
+        preco: 172.10,
+        sinopse: 'lorem ajdlkjflakdjsflkajdçfljasdlçkfjalçkjdsf açlkjdflçakjdflkj adfjaçldjfla çafl kjadslçfja lkj aldkfjalkçdjf lçakjdfkaj alkdjfalçkdfjalçkdjflkaj flkasdjflj açlfaj lçkdjfoihjqiruh afhoiquehfrauidf qoihfruadhfnkaj bqohrqwuiehr ',
+        capa: <img src='../../../public/IMG_0018.JPEG'/>
+    }
 
 
 
 
     return(
         <>
-            <div className='____________'>
+            {/*<div className='____________'>
                 <h1>PÁGINA DE DETALHES</h1>
                 <h1>{livro.titulo}</h1>
                 <img src={livro.capa} alt={livro.titulo} className='____________' />
@@ -36,15 +51,16 @@ export default function Detalhes(){
                 <p><strong>Ano:</strong>{livro.anolancamento}</p>
                 <p><strong>Sinopse:</strong>{livro.sinopse}</p>
                 <p><strong>Preço:</strong>R${livro.preco}</p>
+            */}
 
                 <div class="container my-5">
                     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
                         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{livro.titulo}</h1>
-                            <p class="lead">Autor: {livro.autor}</p>
-                            <p class="lead">Ano de publicação: {livro.anolancamento}</p>
-                            <p class="lead">Sinopse: {livro.sinopse}</p>
-                            <p class="lead">Preço: R${livro.preco}</p>
+                            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{Livro.titulo}</h1>
+                            <p class="lead"><strong>Autor:</strong> {Livro.autor}</p>
+                            <p class="lead"><strong>Ano de publicação:</strong> {Livro.lancamento.ano}</p>
+                            <p class="lead"><strong>Sinopse:</strong> {Livro.sinopse}</p>
+                            <p class="lead"><strong>Preço:</strong>R${Livro.preco.toFixed(2)}</p>
 
                         //talvez, aqui, inserir mais informações, ou inserir a sinopse, mais longa, nessa div.
                             {/*<div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">*/}
@@ -53,10 +69,11 @@ export default function Detalhes(){
                         </div>
                     </div>
                     <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                        <img class="rounded-lg-3" src={livro.capa} alt={livro.titulo} width="720" />
+                     class="rounded-lg-3"
+                        <img class="rounded-lg-3"  src={Livro.capa} alt={Livro.titulo} width="720" />
                     </div>
                 </div>
-            </div>
+            {/*</div>*/}
         </>
     )
 }

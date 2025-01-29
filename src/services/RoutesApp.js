@@ -14,7 +14,7 @@ export default function RoutesApp() {
                 <Header />
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='/detalhes/:livroID' element={<Detalhes />} />
+                    <Route path='/detalhes/:iago' element={<Detalhes />} />
                     
                     <Route path='/Cadastrar' element={<Cadastro />} />
                 </Routes>
