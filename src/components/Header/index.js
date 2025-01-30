@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import "./Header.css";
 
 export default function Header() {
     return (
-        <nav className=" navbar navbar-expand-md container-header">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">Livros livre</Link>
+        <nav className="navbar navbar-expand-md container-header d-flex justify-content-center">
+            <div className="container-fluid nav-config">
+                <Link className="navbar-brand col-2" to="/">Livros livre</Link>
 
                 <form className="d-flex mx-md-5 d-none d-md-flex" role="search">
-                    <input className="form-control me-2" type="search" placeholder="Buscar produtos" aria-label="pesquisar" />
+                    <input className="form-control me-2" type="search" placeholder="Buscar produtos"
+                           aria-label="pesquisar"/>
                 </form>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

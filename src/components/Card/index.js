@@ -12,7 +12,7 @@ export default function Card(props) {
 
     return (
 
-        <div className="card" style={estilo}>
+        <div className="card card-container" style={estilo}>
             <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..." />
             <div className="card-body">
                 <Link to={`/detalhes/${props.conteudo.id}`}><h5 className="card-title">{props.conteudo.titulo}</h5></Link>
@@ -28,6 +28,7 @@ export default function Card(props) {
 
                         <div className="d-inline">
                             <ModalDelete conteudo = {props.conteudo}/>
+                    
                         </div>
                     </div>
                 </div>
