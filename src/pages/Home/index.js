@@ -37,7 +37,8 @@ import { useEffect } from "react";
 //     }
     
 // ]
-import {buscaDados} from "../../components/buscaDados";
+//import {buscaDados} from "../../components/buscaDados";
+import { buscaDados } from "../../components/Buscadados";
 
 
 export default function Home(){
