@@ -15,11 +15,13 @@ export default function Cadastro() {
   });
   
   const [newBook, setNewBook] = useState({
-    titulo: '',
-    autor: '',
-    genero: '',
-    detalhes: '',
-    valor: '',
+    Livro: {
+      titulo: '',
+      autor: '',
+      genero: '',
+      sinopse: '',
+      valor: '',
+    },
   });
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function Cadastro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let { titulo, autor, genero, detalhes, valor } = newBook;
+    let { Livro } = newBook;
 
     if (!titulo || !autor || !genero || !detalhes || !valor) {
       toast.error('Por favor, preencha todos os campos obrigatórios!');
@@ -43,7 +45,7 @@ export default function Cadastro() {
     // const bookWithId = {id: Date.now(), ...newBook}
 
     setBooks((prevBooks) => [...prevBooks, newBook]);
-    setNewBook({ titulo: '', autor: '', genero: '', detalhes: '', valor:''});
+    setNewBook({ Livro.titulo: '', autor: '', genero: '', detalhes: '', valor:''});
     toast.success('Livro cadastrado com sucesso!');
   };
 
