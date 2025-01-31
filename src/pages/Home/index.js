@@ -1,7 +1,7 @@
 import "./home.css";
 import Card from "../../components/Card";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 
 // const bd = [
@@ -37,15 +37,21 @@ import { Link } from "react-router-dom";
 //     }
     
 // ]
+import {buscaDados} from "../../components/buscaDados";
+
 
 export default function Home(){
+    let bd = buscaDados();
+    
+    
 
     useEffect(()=>{
-        document.title = "Pagina inicial"
+        document.title = "Pagina inicial";
     },[])
     return(
         <div className="container-home">
             {bd.map((book, index)=>{
+
                 return(
                     <div className="card-home" key={index}>
                         <Card conteudo = {book}/>

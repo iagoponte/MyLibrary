@@ -1,17 +1,25 @@
-/*
+
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
+
+
 export default function Cadastro() {
+  useEffect(() => {
+    document.title = "Cadastrar"
+  }, []);
+
   const [books, setBooks] = useState(() => {
     const storedBooks = localStorage.getItem('books');
     return storedBooks ? JSON.parse(storedBooks) : [];
   });
-
+  
   const [newBook, setNewBook] = useState({
-    title: '',
-    author: '',
-    genre: '',
+    titulo: '',
+    autor: '',
+    genero: '',
+    detalhes: '',
+    valor: '',
   });
 
   useEffect(() => {
@@ -25,15 +33,17 @@ export default function Cadastro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, author, genre } = newBook;
+    let { titulo, autor, genero, detalhes, valor } = newBook;
 
-    if (!title || !author || !genre) {
+    if (!titulo || !autor || !genero || !detalhes || !valor) {
       toast.error('Por favor, preencha todos os campos obrigatórios!');
       return;
     }
 
-    setBooks((prevBooks) => [...prevBooks, newBook]); 
-    setNewBook({ title: '', author: '', genre: '' }); 
+    // const bookWithId = {id: Date.now(), ...newBook}
+
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+    setNewBook({ titulo: '', autor: '', genero: '', detalhes: '', valor:''});
     toast.success('Livro cadastrado com sucesso!');
   };
 
@@ -46,8 +56,8 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="title"
-            value={newBook.title}
+            name="titulo"
+            value={newBook.titulo}
             onChange={handleChange}
           />
         </div>
@@ -56,8 +66,8 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="author"
-            value={newBook.author}
+            name="autor"
+            value={newBook.autor}
             onChange={handleChange}
           />
         </div>
@@ -66,8 +76,28 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="genre"
-            value={newBook.genre}
+            name="genero"
+            value={newBook.genero}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Detalhes</label>
+          <input
+            type="text"
+            className="form-control"
+            name="detalhes"
+            value={newBook.detalhes}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Valor</label>
+          <input
+            type="text"
+            className="form-control"
+            name="valor"
+            value={newBook.valor}
             onChange={handleChange}
           />
         </div>
@@ -78,59 +108,58 @@ export default function Cadastro() {
     </div>
   );
 }
-  */
 
-import { useState, useEffect } from "react";
-import { toast } from 'react-toastify';
+// import { useState, useEffect } from "react";
+// import { toast } from 'react-toastify';
 
-export default function Cadastro() {
-  const [books, setBooks] = useState(() => {
-    const storedBooks = localStorage.getItem('books');
-    return storedBooks ? JSON.parse(storedBooks) : [];
-  });
+// export default function Cadastro() {
+//   const [books, setBooks] = useState(() => {
+//     const storedBooks = localStorage.getItem('books');
+//     return storedBooks ? JSON.parse(storedBooks) : [];
+//   });
 
-  const [newBook, setNewBook] = useState({
-    title: '',
-    author: '',
-    genre: '',
-    //livroID: '',
-  });
+//   const [newBook, setNewBook] = useState({
+//     title: '',
+//     author: '',
+//     genre: '',
+//     //livroID: '',
+//   });
 
-  useEffect(() => {
-    if (books.length > 0) {
-      localStorage.setItem('books', JSON.stringify(books));
-    }
-  }, [books]);
+//   useEffect(() => {
+//     if (books.length > 0) {
+//       localStorage.setItem('books', JSON.stringify(books));
+//     }
+//   }, [books]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewBook((prevBook) => ({ ...prevBook, [name]: value }));
-  };
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setNewBook((prevBook) => ({ ...prevBook, [name]: value }));
+//   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { title, author, genre } = newBook;
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const { title, author, genre } = newBook;
 
-    if (!title || !author || !genre) {
-      toast.error('Por favor, preencha todos os campos obrigatórios!');
-      return;
-    }
+//     if (!title || !author || !genre) {
+//       toast.error('Por favor, preencha todos os campos obrigatórios!');
+//       return;
+//     }
 
-    // Verifica se o livro já existe na biblioteca
-    const bookExists = books.some(
-      (book) => book.title.toLowerCase() === title.toLowerCase()
-    );
+//     // Verifica se o livro já existe na biblioteca
+//     const bookExists = books.some(
+//       (book) => book.title.toLowerCase() === title.toLowerCase()
+//     );
 
-    if (bookExists) {
-      toast.error('Este livro já está cadastrado!');
-      return;
-    }
+//     if (bookExists) {
+//       toast.error('Este livro já está cadastrado!');
+//       return;
+//     }
 
-    // Cria um novo livro com ID único
-    const bookWithId = { id: Date.now(), ...newBook };
+//     // Cria um novo livro com ID único
+//     const bookWithId = { id: Date.now(), ...newBook };
 
-    setBooks((prevBooks) => [...prevBooks, bookWithId]);
-    setNewBook({ title: '', author: '', genre: '' });
-    toast.success('Livro cadastrado com sucesso!');
-  }
-}
+//     setBooks((prevBooks) => [...prevBooks, bookWithId]);
+//     setNewBook({ title: '', author: '', genre: '' });
+//     toast.success('Livro cadastrado com sucesso!');
+//   }
+// }

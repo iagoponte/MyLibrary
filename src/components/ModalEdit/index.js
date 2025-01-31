@@ -2,11 +2,14 @@ import { Pencil } from 'lucide-react';
 
 
 export default function ModalEdit(props) {
-    console.log(props.conteudo);
-
-    function editarConteudo(){
-        
-    }
+    const conteudo = {
+        titulo: props.conteudo.titulo,
+        autor:  props.conteudo.autor,
+        genero:  props.conteudo.genero,
+        detalhes:  props.conteudo.detalhes,
+        valor:  props.conteudo.valor,
+      }
+    
     
     return (
         <>
@@ -32,7 +35,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        value={props.conteudo.titulo}
+                                        value={conteudo.titulo}
                                         aria-describedby="emailHelp" />
                                 </div>
                                 <div className="mb-3">
@@ -41,7 +44,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="autor"
-                                        value={props.conteudo.autor} />
+                                        value={conteudo.autor} />
                                 </div>
                                 <div className="mb-3">
                                     <label for="valor" className="form-label">Valor</label>
@@ -49,7 +52,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="valor"
-                                        value={props.conteudo.valor} />
+                                        value={conteudo.valor} />
                                 </div>
                                 <div className="mb-3">
                                     <label for="descricao" className="form-label">Descrição</label>
@@ -57,7 +60,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="descricao"
-                                        value={props.conteudo.detalhes} />
+                                        value={conteudo.detalhes} />
                                 </div>
                                 <div className="mb-3">
                                     <label for="genero" className="form-label">Gênero</label>
@@ -65,7 +68,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="genero"
-                                        value={props.conteudo.genero} />
+                                        value={conteudo.genero} />
                                 </div>
                                 <div className="d-flex">
                                     <div className="ms-auto">
