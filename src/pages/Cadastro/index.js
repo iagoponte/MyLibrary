@@ -1,3 +1,4 @@
+/*
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
@@ -76,4 +77,60 @@ export default function Cadastro() {
       </form>
     </div>
   );
+}
+  */
+
+import { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
+
+export default function Cadastro() {
+  const [books, setBooks] = useState(() => {
+    const storedBooks = localStorage.getItem('books');
+    return storedBooks ? JSON.parse(storedBooks) : [];
+  });
+
+  const [newBook, setNewBook] = useState({
+    title: '',
+    author: '',
+    genre: '',
+    //livroID: '',
+  });
+
+  useEffect(() => {
+    if (books.length > 0) {
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+  }, [books]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewBook((prevBook) => ({ ...prevBook, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { title, author, genre } = newBook;
+
+    if (!title || !author || !genre) {
+      toast.error('Por favor, preencha todos os campos obrigatórios!');
+      return;
+    }
+
+    // Verifica se o livro já existe na biblioteca
+    const bookExists = books.some(
+      (book) => book.title.toLowerCase() === title.toLowerCase()
+    );
+
+    if (bookExists) {
+      toast.error('Este livro já está cadastrado!');
+      return;
+    }
+
+    // Cria um novo livro com ID único
+    const bookWithId = { id: Date.now(), ...newBook };
+
+    setBooks((prevBooks) => [...prevBooks, bookWithId]);
+    setNewBook({ title: '', author: '', genre: '' });
+    toast.success('Livro cadastrado com sucesso!');
+  }
 }

@@ -1,11 +1,15 @@
 //vou precisar utilizar link<rel e crossorigin> para trackear de onde eu estou chegando nesta página
 import {useEffect, useState} from 'react'
-import {useNavigatem, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 
+/*
 export default function Detalhes(){
     const { livroID } = useParams()
+    //podemos usar o livroID como book.title ou alguma outra marcação bibliográfica
     console.log(livroID)
-    const [livro, setLivro] = useState(null)
+    const navigate = useNavigate();
+    //const [livro, setLivro] = useState(null)
+    const [newBook, setNewBook] = useState(null)
     //<Link to={`/detalhes/${index}`}>
     //const navegarDetalhe = useNavigate() → não sei se vai precisar aqui ou na página dos cards / cadastro
 
@@ -13,53 +17,46 @@ export default function Detalhes(){
     //aconteceria na função que trás o livro do local storage.
 
     useEffect(() => {
-        const pegarLivroStorage = localStorage.getItem('Nome_do_livro_selecionado')
-        if (livroID) {
-            setLivro(JSON.parse(pegarLivroStorage));
-        }
-    }, [livroID]);
+        const pegarLivroStorage = JSON.parse(localStorage.getItem('books') || [])
 
-    if (!livro) {
+        const livroEncontrado = pegarLivroStorage.find(livroID)
+        //console.log(newBook.title, newBook.author, newBook.genre)
+        if (livroEncontrado) {
+            setNewBook(livroEncontrado);
+        } else {
+            <p>Livro não encontrado</p>
+        }
+    }, [livroID, navigate]);
+
+    if (!newBook) {
         return <p>Carregando os detalhes do livro...</p>
     }
+*/
 
 
-
-
+/*
     return(
         <>
             <div className='____________'>
-                <h1>PÁGINA DE DETALHES</h1>
-                <h1>{livro.titulo}</h1>
-                <img src={livro.capa} alt={livro.titulo} className='____________' />
-                <p><strong>Autor:</strong>{livro.autor}</p>
-                <p><strong>Ano:</strong>{livro.anolancamento}</p>
-                <p><strong>Sinopse:</strong>{livro.sinopse}</p>
-                <p><strong>Preço:</strong>R${livro.preco}</p>
-
                 <div class="container my-5">
                     <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
                         <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{livro.titulo}</h1>
-                            <p class="lead">Autor: {livro.autor}</p>
-                            <p class="lead">Ano de publicação: {livro.anolancamento}</p>
-                            <p class="lead">Sinopse: {livro.sinopse}</p>
-                            <p class="lead">Preço: R${livro.preco}</p>
-
-                        //talvez, aqui, inserir mais informações, ou inserir a sinopse, mais longa, nessa div.
-                            {/*<div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">*/}
-                            {/*<button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Primary</button/>
-                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>*/}
+                            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">{newBook.title}</h1>
+                            <p class="lead">Autor: {newBook.author}</p>
+                            <p class="lead">Ano de publicação: {newBook.genre}</p>
+                            <p class="lead">Sinopse: {newBook.sinopse}</p>
+                            <p class="lead">Preço: R${newBook.preco}</p>
                         </div>
                     </div>
                     <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-                        <img class="rounded-lg-3" src={livro.capa} alt={livro.titulo} width="720" />
+                        <img class="rounded-lg-3" src={newBook.capa} alt={newBook.titulo} width="720" />
                     </div>
                 </div>
             </div>
         </>
     )
 }
+*/
 //rota
 //<Route path="/detalhes/:livroID" element={<Detalhes />} />
 
@@ -68,3 +65,52 @@ export default function Detalhes(){
     const livroId = livro.id; // O ID do livro, que deve ser único
     localStorage.setItem(`livro_${livroId}`, JSON.stringify(livro));
 }; */
+
+export default function Detalhes() {
+    const { livroID } = useParams(); // Obtém o ID da URL
+    const navigate = useNavigate();
+    const [newBook, setNewBook] = useState(null);
+
+    useEffect(() => {
+        console.log("ID da URL:", livroID); // Verificar o ID que está chegando
+
+        const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
+        console.log("Livros armazenados:", pegarLivrosStorage); // Verificar os dados no localStorage
+
+        // Converter `livroID` para número se os IDs estiverem salvos como números
+        const livroEncontrado = pegarLivrosStorage.find((book) => book.id === livroID);
+
+        if (livroEncontrado) {
+            setNewBook(livroEncontrado);
+        } else {
+            console.warn("Livro não encontrado!");
+            //navigate('/'); // Redireciona caso o livro não seja encontrado
+        }
+    }, [livroID, navigate]);
+
+    if (!newBook) {
+        return <p>Carregando os detalhes do livro...</p>;
+    }
+
+    return (
+        <div className="container my-5">
+            <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
+                    <h1 className="display-4 fw-bold lh-1 text-body-emphasis">{newBook.title}</h1>
+                    <p className="lead">Autor: {newBook.author}</p>
+                    <p className="lead">Gênero: {newBook.genre}</p>
+                    <p className="lead">Sinopse: {newBook.sinopse || "Sinopse não disponível"}</p>
+                    <p className="lead">Preço: R${newBook.preco || "Não informado"}</p>
+                </div>
+                <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+                    <img 
+                        className="rounded-lg-3" 
+                        src={newBook.capa}
+                        alt={newBook.title} 
+                        width="720" 
+                    />
+                </div>
+            </div>
+        </div>
+    );
+}
