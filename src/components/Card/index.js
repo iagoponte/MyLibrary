@@ -6,9 +6,21 @@ import { Link } from "react-router-dom";
 
 
 export default function Card(props) {
-    
     console.log(props);
     
+    let livroID = props.conteudo.id
+    let livroEncontrado = [];
+
+    const loadLivro = () => {
+        console.log("ID da URL:", livroID);
+
+        const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
+
+        livroEncontrado = pegarLivrosStorage.find((book) => Number(book.id) === Number(livroID));
+        console.log(livroEncontrado)
+    }
+    loadLivro();
+
     const estilo = {
         width: "18rem",
     }
@@ -16,7 +28,7 @@ export default function Card(props) {
     return (
 
         <div className="card card-container" style={estilo}>
-            <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..." />
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrfBdhAlfIwEibJi02cbBkoAbVIUJDfTWFsA&s" className="card-img-top img-fluid" alt="Capa Livro" />
             <div className="card-body">
                 <Link to={`/detalhes/${props.conteudo.id}`}><h5 className="card-title">{props.conteudo.titulo}</h5></Link>
                 <p className="">R${props.conteudo.valor}</p>

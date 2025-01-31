@@ -138,7 +138,7 @@ export default function Cadastro() {
 
 
   // Salva livros no localstorage
-  const setBd = ()=> {
+  const setBd = () => {
     localStorage.setItem('books', JSON.stringify(books));
   }
 
@@ -147,6 +147,7 @@ export default function Cadastro() {
   const [detalhes, setDetalhes] = useState('');
   const [valor, setValor] = useState('');
   const [genero, setGenero] = useState('');
+  const [capa, setCapa] = useState('');
 
 
   let handleSubmit = (e) => {
@@ -154,7 +155,7 @@ export default function Cadastro() {
 
     e.preventDefault();
 
-    if (!titulo || !autor || !genero || !detalhes || !valor) {
+    if (!titulo || !autor || !genero || !detalhes || !valor || !capa) {
       toast.error('Por favor, preencha todos os campos obrigatórios!');
       return;
     }
@@ -165,6 +166,7 @@ export default function Cadastro() {
       genero: genero,
       detalhes: detalhes,
       valor: valor,
+      capa: capa,
       id: booksSave.length
     }
 
@@ -178,6 +180,7 @@ export default function Cadastro() {
     setDetalhes('');
     setValor('');
     setGenero('');
+    setCapa('');
 
     toast.success('Livro cadastrado com sucesso!');
   };
@@ -232,6 +235,16 @@ export default function Cadastro() {
             type="text"
             className="form-control"
             name="valor"
+            value={valor}
+            onChange={e => setValor(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Capa do Livro (URL)</label>
+          <input
+            type="text"
+            className="form-control"
+            name="capa"
             value={valor}
             onChange={e => setValor(e.target.value)}
           />

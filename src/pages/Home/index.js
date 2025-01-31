@@ -50,7 +50,7 @@ export default function Home(){
         document.title = "Pagina inicial";
     },[])
     return(
-        <div className="container-home">
+        <div className="container-lg">
             {bd.map((book, index)=>{
 
                 return(

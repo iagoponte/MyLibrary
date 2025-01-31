@@ -8,8 +8,21 @@ export default function ModalEdit(props) {
         genero:  props.conteudo.genero,
         detalhes:  props.conteudo.detalhes,
         valor:  props.conteudo.valor,
+        capa: props.conteudo.capa,
       }
-    
+    // let livroID = ''
+    // let livroEncontrado = [];
+    // const loadLivro = () => {
+    //     console.log("ID da URL:", livroID); 
+
+    //     const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
+
+
+    //     livroEncontrado = pegarLivrosStorage.find((book) => Number(book.id) === Number(livroID));
+    //     console.log(livroEncontrado)
+    // }
+    // loadLivro();
+   
     
     return (
         <>
@@ -30,16 +43,16 @@ export default function ModalEdit(props) {
                         <div className="modal-body">
                             <form>
                                 <div className="mb-3">
-                                    <label for="email" className="form-label">Titulo</label>
+                                    <label htmlFor="email" className="form-label">Titulo</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="email"
-                                        value={conteudo.titulo}
+                                        onChange={conteudo.titulo}
                                         aria-describedby="emailHelp" />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="autor" className="form-label">Autor</label>
+                                    <label htmlFor="autor" className="form-label">Autor</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -47,7 +60,7 @@ export default function ModalEdit(props) {
                                         value={conteudo.autor} />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="valor" className="form-label">Valor</label>
+                                    <label htmlFor="valor" className="form-label">Valor</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -55,7 +68,7 @@ export default function ModalEdit(props) {
                                         value={conteudo.valor} />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="descricao" className="form-label">Descrição</label>
+                                    <label htmlFor="descricao" className="form-label">Descrição</label>
                                     <input
                                         type="text"
                                         className="form-control"
@@ -63,12 +76,20 @@ export default function ModalEdit(props) {
                                         value={conteudo.detalhes} />
                                 </div>
                                 <div className="mb-3">
-                                    <label for="genero" className="form-label">Gênero</label>
+                                    <label htmlFor="genero" className="form-label">Gênero</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="genero"
                                         value={conteudo.genero} />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="genero" className="form-label">URL Capa</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="genero"
+                                        value={conteudo.capa} />
                                 </div>
                                 <div className="d-flex">
                                     <div className="ms-auto">
