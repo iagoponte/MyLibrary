@@ -114,23 +114,24 @@ export default function Detalhes() {
     console.log(livroEncontrado)
     return (
         <div className="container my-5">
-            <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
-                <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <div className="row p-4 pb-lg-5 ps-lg-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                <div className="col-lg-8 p-3 p-lg-5 pt-lg-3">
                     <h1 className="display-4 fw-bold lh-1 text-body-emphasis">{livroEncontrado.titulo}</h1>
                     <br/>
-                    <p className="lead">Autor: {livroEncontrado.autor}</p>
-                    <p className="lead">Gênero: {livroEncontrado.genero}</p>
-                    <p className="lead">Sinopse: {livroEncontrado.detalhes || "Sinopse não disponível"}</p>
-                    <p className="lead">Preço: R${livroEncontrado.valor || "Não informado"}</p>
+                    <p className="lead"><strong>Autor:</strong> {livroEncontrado.autor}</p>
+                    <p className="lead"><strong>Gênero:</strong> {livroEncontrado.genero}</p>
+                    <p className="lead"><strong>Sinopse:</strong> {livroEncontrado.detalhes || "Sinopse não disponível"}</p>
+                    <p className="lead"><strong>Preço:</strong> R${livroEncontrado.valor || "Não informado"}</p>
                 </div>
-                <div className="col-lg-4 offset-lg-1 p-3 overflow-hidden shadow-lg">
-                    Capa Original
-                    <img 
-                        className="rounded-lg-3" 
+                <div className="text-center col-lg-4 p-3 p-lg-5 pt-lg-3">
+                {/* offset-lg-1 p-3  shadow-lg"> */}
+                    <img
+                        className="img-fluid"
                         src={livroEncontrado.capa}
-                        alt={livroEncontrado.title} 
-                        
+                        alt={livroEncontrado.title}
+
                     />
+                    <p className='h6 text-center'><small>Capa Original</small></p>
                 </div>
             </div>
         </div>

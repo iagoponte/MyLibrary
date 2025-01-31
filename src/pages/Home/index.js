@@ -50,18 +50,16 @@ export default function Home(){
         document.title = "Pagina inicial";
     },[])
     return(
-        <div className="container-lg">
-            {bd.map((book, index)=>{
+        <div className="container-home">
+            {bd.map((book, index) => {
 
-                return(
+                return (
                     <div className="card-home" key={index}>
-                        <Card conteudo = {book}/>
+                        <Card conteudo={book} />
                     </div>
                 );
             })
-
             }
-
         </div>
     );
 }

@@ -245,8 +245,8 @@ export default function Cadastro() {
             type="text"
             className="form-control"
             name="capa"
-            value={valor}
-            onChange={e => setValor(e.target.value)}
+            value={capa}
+            onChange={e => setCapa(e.target.value)}
           />
         </div>
         <button type="submit" className="btn btn-primary">

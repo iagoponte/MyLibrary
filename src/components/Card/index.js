@@ -28,7 +28,7 @@ export default function Card(props) {
     return (
 
         <div className="card card-container" style={estilo}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrfBdhAlfIwEibJi02cbBkoAbVIUJDfTWFsA&s" className="card-img-top img-fluid" alt="Capa Livro" />
+            <img src={props.conteudo.capa} className="card-img-top img-fluid" alt="Capa Livro" />
             <div className="card-body">
                 <Link to={`/detalhes/${props.conteudo.id}`}><h5 className="card-title">{props.conteudo.titulo}</h5></Link>
                 <p className="">R${props.conteudo.valor}</p>

@@ -1,4 +1,5 @@
 import { Pencil } from 'lucide-react';
+import { useState } from 'react';
 
 
 export default function ModalEdit(props) {
@@ -22,7 +23,23 @@ export default function ModalEdit(props) {
     //     console.log(livroEncontrado)
     // }
     // loadLivro();
-   
+    let [titulo, setTitulo] = useState('');
+    let [autor, setAutor] = useState('');
+    let [detalhes, setDetalhes] = useState('');
+    let [valor, setValor] = useState('');
+    let [genero, setGenero] = useState('');
+    let [capa, setCapa] = useState('');
+
+    let handleSubmit = (e) => {
+        
+
+        setTitulo('');
+        setAutor('');
+        setDetalhes('');
+        setValor('');
+        setGenero('');
+        setCapa('');
+   }
     
     return (
         <>
@@ -41,15 +58,16 @@ export default function ModalEdit(props) {
 
 
                         <div className="modal-body">
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Titulo</label>
+                                    <label for="titulo" className="form-label">Titulo</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="email"
-                                        onChange={conteudo.titulo}
-                                        aria-describedby="emailHelp" />
+                                        id="titulo"
+                                        //value={conteudo.titulo}
+                                        onChange={e => setTitulo(e.target.value)}
+                                        /*aria-describedby="emailHelp"*/ />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="autor" className="form-label">Autor</label>
@@ -57,7 +75,8 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="autor"
-                                        value={conteudo.autor} />
+                                        value={conteudo.autor}
+                                        onChange={e => setAutor(e.target.value)} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="valor" className="form-label">Valor</label>
@@ -84,11 +103,11 @@ export default function ModalEdit(props) {
                                         value={conteudo.genero} />
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="genero" className="form-label">URL Capa</label>
+                                    <label htmlFor="capa" className="form-label">URL Capa</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="genero"
+                                        id="capa"
                                         value={conteudo.capa} />
                                 </div>
                                 <div className="d-flex">
