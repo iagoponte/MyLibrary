@@ -69,44 +69,51 @@ export default function Detalhes(){
 export default function Detalhes() {
     const { livroID } = useParams(); // Obtém o ID da URL
     const navigate = useNavigate();
-    const [newBook, setNewBook] = useState(null);
+    // const [newBook, setNewBook] = useState([]);
 
-    useEffect(() => {
+    let livroEncontrado = [];
+
+    const loadLivro = () => {
         console.log("ID da URL:", livroID); // Verificar o ID que está chegando
 
         const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
-        console.log("Livros armazenados:", pegarLivrosStorage); // Verificar os dados no localStorage
+        // console.log("Livros armazenados:", pegarLivrosStorage); // Verificar os dados no localStorage
 
         // Converter `livroID` para número se os IDs estiverem salvos como números
-        const livroEncontrado = pegarLivrosStorage.find((book) => book.id === livroID);
 
-        if (livroEncontrado) {
-            setNewBook(livroEncontrado);
-        } else {
-            console.warn("Livro não encontrado!");
-            //navigate('/'); // Redireciona caso o livro não seja encontrado
-        }
-    }, [livroID, navigate]);
+        livroEncontrado = pegarLivrosStorage.find((book) => Number(book.id) === Number(livroID));
+        console.log(livroEncontrado)
+               
+        
+    //     if (livroEncontrado) {
+    //         setNewBook(livroEncontrado);
+    //         console.log(newBook, 'ksdljfakçlj')
+    //     } else {
+    //         // console.warn("Livro não encontrado!");
+    //         //navigate('/'); // Redireciona caso o livro não seja encontrado
+    //     }
+    } //[livroID, navigate]);
 
-    if (!newBook) {
-        return <p>Carregando os detalhes do livro...</p>;
-    }
-
+    // if (!newBook) {
+    //     return <p>Carregando os detalhes do livro...</p>;
+    //}
+    loadLivro();
+    console.log(livroEncontrado)
     return (
         <div className="container my-5">
             <div className="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
                 <div className="col-lg-7 p-3 p-lg-5 pt-lg-3">
-                    <h1 className="display-4 fw-bold lh-1 text-body-emphasis">{newBook.title}</h1>
-                    <p className="lead">Autor: {newBook.author}</p>
-                    <p className="lead">Gênero: {newBook.genre}</p>
-                    <p className="lead">Sinopse: {newBook.sinopse || "Sinopse não disponível"}</p>
-                    <p className="lead">Preço: R${newBook.preco || "Não informado"}</p>
+                    <h1 className="display-4 fw-bold lh-1 text-body-emphasis">{livroEncontrado.titulo}</h1>
+                    <p className="lead">Autor: {livroEncontrado.autor}</p>
+                    <p className="lead">Gênero: {livroEncontrado.genero}</p>
+                    <p className="lead">Sinopse: {livroEncontrado.detalhes || "Sinopse não disponível"}</p>
+                    <p className="lead">Preço: R${livroEncontrado.valor || "Não informado"}</p>
                 </div>
                 <div className="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
                     <img 
                         className="rounded-lg-3" 
-                        src={newBook.capa}
-                        alt={newBook.title} 
+                        src={livroEncontrado.capa}
+                        alt={livroEncontrado.title} 
                         width="720" 
                     />
                 </div>
