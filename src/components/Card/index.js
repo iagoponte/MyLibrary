@@ -12,12 +12,12 @@ export default function Card(props) {
     let livroEncontrado = [];
 
     const loadLivro = () => {
-        console.log("ID da URL:", livroID);
+        // console.log("ID da URL:", livroID);
 
         const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
 
         livroEncontrado = pegarLivrosStorage.find((book) => Number(book.id) === Number(livroID));
-        console.log(livroEncontrado)
+        // console.log(livroEncontrado)
     }
     loadLivro();
 

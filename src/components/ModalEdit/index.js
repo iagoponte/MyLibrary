@@ -48,7 +48,7 @@ export default function ModalEdit(props) {
             </button>
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -60,12 +60,12 @@ export default function ModalEdit(props) {
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
                                 <div className="mb-3">
-                                    <label for="titulo" className="form-label">Titulo</label>
+                                    <label htmlFor="titulo" className="form-label">Titulo</label>
                                     <input
                                         type="text"
                                         className="form-control"
                                         id="titulo"
-                                        //value={conteudo.titulo}
+                                        defaultValue={conteudo.titulo}
                                         onChange={e => setTitulo(e.target.value)}
                                         /*aria-describedby="emailHelp"*/ />
                                 </div>
@@ -75,7 +75,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="autor"
-                                        value={conteudo.autor}
+                                        defaultValue={conteudo.autor}
                                         onChange={e => setAutor(e.target.value)} />
                                 </div>
                                 <div className="mb-3">
@@ -84,7 +84,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="valor"
-                                        value={conteudo.valor} />
+                                        defaultValue={conteudo.valor} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="descricao" className="form-label">Descrição</label>
@@ -92,7 +92,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="descricao"
-                                        value={conteudo.detalhes} />
+                                        defaultValue={conteudo.detalhes} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="genero" className="form-label">Gênero</label>
@@ -100,7 +100,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="genero"
-                                        value={conteudo.genero} />
+                                        defaultValue={conteudo.genero} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="capa" className="form-label">URL Capa</label>
@@ -108,7 +108,7 @@ export default function ModalEdit(props) {
                                         type="text"
                                         className="form-control"
                                         id="capa"
-                                        value={conteudo.capa} />
+                                        defaultValue={conteudo.capa} />
                                 </div>
                                 <div className="d-flex">
                                     <div className="ms-auto">

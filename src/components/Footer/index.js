@@ -5,8 +5,7 @@ export default function Footer()  {
             {/* <footer className="text-center container-footer fixed-bottom" > */}
             {/* <div class="container p-4"></div> */}
             <div className="text-center p-4">
-                 © 2025 Copyright: 
-                <a className="text-body" href="/"> Livros Livre</a>
+                 © 2025 Copyright: <a className="text-body" href="/">Livros Livre</a>
             </div>
         {/* </footer > */}
         </div>
