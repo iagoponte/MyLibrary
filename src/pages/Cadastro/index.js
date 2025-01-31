@@ -1,16 +1,36 @@
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 
+
+
 export default function Cadastro() {
+  useEffect(() => {
+    document.title = "Cadastrar"
+  }, []);
+
+
+
   const [books, setBooks] = useState(() => {
     const storedBooks = localStorage.getItem('books');
     return storedBooks ? JSON.parse(storedBooks) : [];
   });
 
+
+
+  /*     {
+    titulo: "Harry potter",
+    autor: "Mateus Helcias",
+    detalhes: "Esse é os detalhes do livro de harry potter pelo autor Mateus Helcias",
+    valor: 80,
+    genero: "Romance"
+}
+    */
   const [newBook, setNewBook] = useState({
-    title: '',
-    author: '',
-    genre: '',
+    titulo: '',
+    autor: '',
+    genero: '',
+    detalhes: '',
+    valor: '',
   });
 
   useEffect(() => {
@@ -24,15 +44,15 @@ export default function Cadastro() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, author, genre } = newBook;
+    const { titulo, autor, genero, detalhes, valor } = newBook;
 
-    if (!title || !author || !genre) {
+    if (!titulo || !autor || !genero || !detalhes || !valor) {
       toast.error('Por favor, preencha todos os campos obrigatórios!');
       return;
     }
 
-    setBooks((prevBooks) => [...prevBooks, newBook]); 
-    setNewBook({ title: '', author: '', genre: '' }); 
+    setBooks((prevBooks) => [...prevBooks, newBook]);
+    setNewBook({ titulo: '', autor: '', genero: '', detalhes: '', valor:''});
     toast.success('Livro cadastrado com sucesso!');
   };
 
@@ -45,8 +65,8 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="title"
-            value={newBook.title}
+            name="titulo"
+            value={newBook.titulo}
             onChange={handleChange}
           />
         </div>
@@ -55,8 +75,8 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="author"
-            value={newBook.author}
+            name="autor"
+            value={newBook.autor}
             onChange={handleChange}
           />
         </div>
@@ -65,8 +85,28 @@ export default function Cadastro() {
           <input
             type="text"
             className="form-control"
-            name="genre"
-            value={newBook.genre}
+            name="genero"
+            value={newBook.genero}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Detalhes</label>
+          <input
+            type="text"
+            className="form-control"
+            name="detalhes"
+            value={newBook.detalhes}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Valor</label>
+          <input
+            type="text"
+            className="form-control"
+            name="valor"
+            value={newBook.valor}
             onChange={handleChange}
           />
         </div>

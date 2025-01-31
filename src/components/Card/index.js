@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 
 
 export default function Card(props) {
+    
+    console.log(props);
+    
     const estilo = {
         width: "18rem",
     }
@@ -16,7 +19,7 @@ export default function Card(props) {
             <img src="https://github.com/mateusmenezes.png" className="card-img-top" alt="..." />
             <div className="card-body">
                 <Link to={`/detalhes/${props.conteudo.id}`}><h5 className="card-title">{props.conteudo.titulo}</h5></Link>
-                <p className="">R${props.conteudo.valor.toFixed(2)}</p>
+                <p className="">R${props.conteudo.valor}</p>
                 <p className="">frete gratis</p>
                 <div className="d-flex">
                     <div className="ms-auto">
