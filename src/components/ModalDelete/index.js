@@ -38,6 +38,7 @@ export default function ModalDelete(props) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            {/* ADICIONADO O EVENTO AQUI */}
                             <button type="button" onClick={() => deleteBookfromBd(elements.titulo)} className="btn btn-danger">Deletar</button>
                         </div>
                     </div>

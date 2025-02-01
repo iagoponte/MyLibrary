@@ -8,19 +8,6 @@ import { Link } from "react-router-dom";
 export default function Card(props) {
     console.log(props);
     
-    let livroID = props.conteudo.id
-    let livroEncontrado = [];
-
-    const loadLivro = () => {
-        // console.log("ID da URL:", livroID);
-
-        const pegarLivrosStorage = JSON.parse(localStorage.getItem('books')) || [];
-
-        livroEncontrado = pegarLivrosStorage.find((book) => Number(book.id) === Number(livroID));
-        // console.log(livroEncontrado)
-    }
-    loadLivro();
-
     const estilo = {
         width: "18rem",
     }
