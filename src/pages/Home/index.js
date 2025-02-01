@@ -43,12 +43,11 @@ import { buscaDados } from "../../components/Buscadados";
 
 export default function Home(){
     let bd = buscaDados();
-    
-    
 
     useEffect(()=>{
         document.title = "Pagina inicial";
     },[])
+
     return(
         <div className="container-home">
             {bd.map((book, index) => {

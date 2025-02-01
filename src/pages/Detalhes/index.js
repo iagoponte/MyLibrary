@@ -1,4 +1,4 @@
-//vou precisar utilizar link<rel e crossorigin> para trackear de onde eu estou chegando nesta página
+//não vou precisar utilizar link<rel e crossorigin> para trackear de onde eu estou chegando nesta página
 import {useEffect, useState} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 
@@ -112,6 +112,11 @@ export default function Detalhes() {
     //}
     loadLivro();
     console.log(livroEncontrado)
+
+    useEffect(()=>{
+        document.title = "Detalhes Livros";
+    },[])
+
     return (
         <div className="container my-5">
             <div className="row p-4 pb-lg-5 ps-lg-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">

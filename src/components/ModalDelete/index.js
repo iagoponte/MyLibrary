@@ -9,14 +9,14 @@ export default function ModalDelete(props) {
         }
         return elements;
     };
-    console.log('aqui é antes de deletar', elements)
+    // console.log('aqui é antes de deletar', elements)
 
 
     const deleteBookfromBd = (titulo) => {
         let elements = getBookfromBd();
         elements = elements.filter(element => element.titulo !== titulo);
         localStorage.setItem('books', JSON.stringify(elements))
-        console.log('aqui é depois de deletar', elements)
+        // console.log('aqui é depois de deletar', elements)
     }
 
     return (

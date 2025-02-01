@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 export default function Card(props) {
-    console.log(props);
+    console.log("aqui é a propriedade do card", props);
     
     const estilo = {
         width: "18rem",

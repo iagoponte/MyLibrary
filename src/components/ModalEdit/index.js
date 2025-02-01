@@ -12,8 +12,8 @@ export default function ModalEdit(props) {
         id: props.conteudo.id,
         capa: props.conteudo.capa,
       }
-      console.log('aqui são as props impressas primeiro', props)
-      console.log('qual é o conteudo que vai receber as props', conteudo)
+    //   console.log('aqui são as props impressas primeiro', props)
+    //   console.log('qual é o conteudo que vai receber as props', conteudo)
     // let livroID = ''
     // let livroEncontrado = [];
     // const loadLivro = () => {
