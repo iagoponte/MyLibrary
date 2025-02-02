@@ -1,43 +1,6 @@
 import "./home.css";
 import Card from "../../components/Card";
 import { useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
-
-
-// const bd = [
-//     {
-//         titulo: "Harry potter",
-//         autor: "Mateus Helcias",
-//         detalhes: "Esse é os detalhes do livro de harry potter pelo autor Mateus Helcias",
-//         valor: 80,
-//         genero: "Romance",
-//         id:1
-//     },
-//     {
-//         titulo: "Harry potter",
-//         autor: "Mateus Helcias",
-//         detalhes: "Esse é os detalhes do livro de harry potter pelo autor Mateus Helcias",
-//         valor: 80,
-//         genero: "Romance",
-//         id:2
-//     },
-//     {
-//         titulo: "Harry potter",
-//         autor: "Mateus Helcias",
-//         detalhes: "Esse é os detalhes do livro de harry potter pelo autor Mateus Helcias",
-//         valor: 80,
-//         genero: "Romance"
-//     },
-//     {
-//         titulo: "Harry potter",
-//         autor: "Mateus Helcias",
-//         detalhes: "Esse é os detalhes do livro de harry potter pelo autor Mateus Helcias",
-//         valor: 80,
-//         genero: "Romance"
-//     }
-    
-// ]
-//import {buscaDados} from "../../components/buscaDados";
 import { buscaDados } from "../../components/Buscadados";
 
 

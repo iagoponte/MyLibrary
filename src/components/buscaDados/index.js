@@ -1,13 +1,3 @@
-// export default function BuscaDados(){
-
-//     return(
-//         <div>
-
-//         </div>
-//     );
-// }
-
-
 export const buscaDados = () => {
     let bd = localStorage.getItem("books");
        
