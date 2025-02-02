@@ -50,6 +50,7 @@
 // }
 
 import { Trash } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function ModalDelete({ conteudo, setBooks }) {
   // Função para buscar os livros do localStorage

@@ -42,6 +42,12 @@ import { buscaDados } from "../../components/Buscadados";
 
 
 export default function Home(){
+   
+    const [books, setBooks] = useState(() => {
+        let storedBooks = localStorage.getItem("books");
+        return storedBooks ? JSON.parse(storedBooks) : [];
+    });
+
     let bd = buscaDados();
 
     useEffect(()=>{
