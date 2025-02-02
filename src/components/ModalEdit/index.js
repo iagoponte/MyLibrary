@@ -120,6 +120,7 @@ import { Pencil } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function ModalEdit(props) {
+    // const conteudo = props.conteudo
     const { conteudo } = props; // Pegando os dados do livro passado como prop
     
     // Estados iniciando com os valores do livro
