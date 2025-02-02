@@ -49,10 +49,17 @@
 //     );
 // }
 
+//ESTÁ FUNCIONANDO, MAS PRECISA DAR UM REFRESH NA PÁGINA APÓS REALIZAR O DELETE
 import { Trash } from "lucide-react";
 import { useState, useEffect } from "react";
 
-export default function ModalDelete({ conteudo, setBooks }) {
+export default function ModalDelete({ conteudo }) {
+    
+    const [books, setBooks] = useState(() => {
+        let storedBooks = localStorage.getItem("books");
+        return storedBooks ? JSON.parse(storedBooks) : [];
+    });
+
   // Função para buscar os livros do localStorage
   const getBooksFromBd = () => {
     return JSON.parse(localStorage.getItem("books")) || [];

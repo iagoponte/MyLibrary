@@ -1,6 +1,6 @@
 import "./home.css";
 import Card from "../../components/Card";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
 
 
@@ -43,10 +43,7 @@ import { buscaDados } from "../../components/Buscadados";
 
 export default function Home(){
    
-    const [books, setBooks] = useState(() => {
-        let storedBooks = localStorage.getItem("books");
-        return storedBooks ? JSON.parse(storedBooks) : [];
-    });
+    
 
     let bd = buscaDados();
 
