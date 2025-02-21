@@ -130,7 +130,6 @@ export default function ModalEdit(props) {
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
