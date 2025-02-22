@@ -30,5 +30,20 @@ const searchClientesByNomeEmailQuery = async (nome_usuario, email) => {
   return query;
 };
 
+const updateClienteQuery = async (id, nome_usuario, email, senha_hash) => {
+  try {
+    const query = await connection`UPDATE clientes SET
+    nome_usuario = ${nome_usuario},
+    email = ${email},
+    senha_hash = ${senha_hash}
+    WHERE
+    id = ${id}
+    RETURNING *`;
+    return query[0];
+  } catch (error) {
+    throw error;
+  }
+};
 
-module.exports = { getClientesQuery, createClientQuery, searchClientesByNomeEmailQuery };
+
+module.exports = { getClientesQuery, createClientQuery, searchClientesByNomeEmailQuery, updateClienteQuery };
