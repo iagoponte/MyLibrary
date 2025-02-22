@@ -11,8 +11,8 @@ const getClientesQuery = async () => {
 
 const createClientQuery = async (nome_usuario, email, senha_hash) => {
   try {
-    const query =
-      await connection`INSERT INTO clientes (nome_usuario, email, senha_hash) VALUES (${nome_usuario}, ${email}, ${senha_hash}) RETURNING *`;
+    const query = await connection`INSERT INTO clientes (nome_usuario, email, senha_hash) VALUES (${nome_usuario}, ${email}, ${senha_hash}) RETURNING *`;
+    console.log('entrou no try da função createClientQuery')
     return query[0];
   } catch (error) {
     throw error;

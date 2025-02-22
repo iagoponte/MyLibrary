@@ -1,4 +1,6 @@
-const { getClientesQuery, searchClientesByNomeEmailQuery } = require("../models/clienteModel");
+const { handle404Error, handle400Error } = require("../middlewares/errorMiddleware");
+const { handle200 } = require("../middlewares/successMiddleware");
+const { getClientesQuery, searchClientesByNomeEmailQuery, createClientQuery } = require("../models/clienteModel");
 
 const getClientes = async (req, res) => {
   try {
@@ -32,13 +34,14 @@ const createCliente = async (req, res) => {
     return handle400Error(
       req,
       res,
-      "já existe um cliente com esse título e autor"
+      "já existe um cliente com esse nome ou email"
     );
   }
   try {
-    const query = await createClienteQuery(
+    const query = await createClientQuery(
       nome_usuario,
-      
+      email,
+      senha_hash
     );
     if (query == null) {
       handle404Error(req, res, "Deu erro");
@@ -47,7 +50,7 @@ const createCliente = async (req, res) => {
     }
   } catch (error) {
     console.error(
-      "Sorry, something went wrong on our end. Please try again later.",
+      "Deu erro na função createCliente",
       error
     );
   }
