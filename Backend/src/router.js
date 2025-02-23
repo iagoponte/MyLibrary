@@ -1,9 +1,8 @@
 const express = require('express');
 const {getLivros, getLivrosById, createLivros, updateLivros, deleteLivros} = require('./controllers/livro');
-const { getClientes, createCliente, updateCliente } = require('./controllers/cliente');
+const { getClientes, createCliente, updateCliente, deleteCliente } = require('./controllers/cliente');
 
 const router = express.Router();
-
 
 router.get('/livros', getLivros);
 router.get('/livros/:id', getLivrosById)
@@ -16,5 +15,6 @@ router.delete('/livros/apagar/:id', deleteLivros)
 router.get('/clientes', getClientes)
 router.post('/cliente/signup', createCliente)
 router.put('/cliente/atualizar/:id', updateCliente)
+router.delete('/cliente/apagar/:id', deleteCliente)
 
 module.exports = router;

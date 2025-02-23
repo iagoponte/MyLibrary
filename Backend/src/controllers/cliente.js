@@ -1,6 +1,6 @@
 const { handle404Error, handle400Error } = require("../middlewares/errorMiddleware");
 const { handle200 } = require("../middlewares/successMiddleware");
-const { getClientesQuery, searchClientesByNomeEmailQuery, createClientQuery, updateClienteQuery } = require("../models/clienteModel");
+const { getClientesQuery, searchClientesByNomeEmailQuery, createClientQuery, updateClienteQuery, deleteClienteQuery } = require("../models/clienteModel");
 
 const getClientes = async (req, res) => {
   try {
@@ -81,4 +81,26 @@ const updateCliente = async (req, res) => {
     );
   }
 };
-module.exports = { getClientes, createCliente, updateCliente };
+
+const deleteCliente = async (req, res) => {
+  const id = req.params.id;
+  // const test = await getClienteByIdQuery(id);
+  // if (test == null) {
+  //   return handle404Error(req, res, 'Este livro já não fora excluído');
+  // }
+  try {
+    const query = await deleteClienteQuery(id);
+    if (query.length === 0) {
+      handle404Error(req, res, "Este livro não existe", query);
+    } else {
+      handle200(req, res, "Deletado!!");
+    }
+  } catch (error) {
+    console.error(
+      "Sorry, something went wrong on our end. Please try again later.",
+      error
+    );
+  }
+};
+
+module.exports = { getClientes, createCliente, updateCliente, deleteCliente };

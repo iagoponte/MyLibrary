@@ -45,5 +45,16 @@ const updateClienteQuery = async (id, nome_usuario, email, senha_hash) => {
   }
 };
 
+const deleteClienteQuery = async (id) => {
+  const query = await connection`DELETE FROM clientes
+        WHERE id = ${id} RETURNING *`;
+//   if (query.length === 0) {
+//     console.log("O livro foi deletado com sucesso");
+//     return query[0];
+//   }
+  return query;
+  ;
+};
 
-module.exports = { getClientesQuery, createClientQuery, searchClientesByNomeEmailQuery, updateClienteQuery };
+
+module.exports = { getClientesQuery, createClientQuery, searchClientesByNomeEmailQuery, updateClienteQuery, deleteClienteQuery };
