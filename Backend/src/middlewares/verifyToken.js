@@ -1,4 +1,5 @@
-// só criei o arquivo, sei que vou precisar, mas ainda não sei criar / utilizar.
+// copiado e colado do backend do lucas
+
 require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');

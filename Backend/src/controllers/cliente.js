@@ -10,6 +10,10 @@ const {
   updateClienteQuery,
   deleteClienteQuery,
 } = require("../models/clienteModel");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const jwtSecret = process.env.JWT_SECRET;
 
 const getClientes = async (req, res) => {
   try {
@@ -38,7 +42,6 @@ const createCliente = async (req, res) => {
     email
   );
   console.log(checarClienteExistente);
-
   if (checarClienteExistente !== null) {
     return handle400Error(
       req,
@@ -47,11 +50,14 @@ const createCliente = async (req, res) => {
     );
   }
   try {
-    const query = await createClientQuery(nome_usuario, email, senha_hash);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(senha_hash, saltRounds);
+
+    const query = await createClientQuery(nome_usuario, email, hashedPassword);
     if (query == null) {
-      handle404Error(req, res, "Deu erro");
+    handle404Error(req, res, `Deu erro, query==null`);
     } else {
-      handle200(req, res, "Sucesso", query);
+      handle200(req, res, `O usuário ${nome_usuario} foi criado!`, query);
     }
   } catch (error) {
     console.error("Deu erro na função createCliente", error);
