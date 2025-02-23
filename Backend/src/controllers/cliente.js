@@ -1,6 +1,15 @@
-const { handle404Error, handle400Error } = require("../middlewares/errorMiddleware");
+const {
+  handle404Error,
+  handle400Error,
+} = require("../middlewares/errorMiddleware");
 const { handle200 } = require("../middlewares/successMiddleware");
-const { getClientesQuery, searchClientesByNomeEmailQuery, createClientQuery, updateClienteQuery, deleteClienteQuery } = require("../models/clienteModel");
+const {
+  getClientesQuery,
+  searchClientesByNomeEmailQuery,
+  createClientQuery,
+  updateClienteQuery,
+  deleteClienteQuery,
+} = require("../models/clienteModel");
 
 const getClientes = async (req, res) => {
   try {
@@ -9,7 +18,7 @@ const getClientes = async (req, res) => {
       return "NAO ACHOU";
     } else {
       console.log("ois");
-      res.send (query);
+      res.send(query);
     }
   } catch (error) {
     console.error(
@@ -38,21 +47,14 @@ const createCliente = async (req, res) => {
     );
   }
   try {
-    const query = await createClientQuery(
-      nome_usuario,
-      email,
-      senha_hash
-    );
+    const query = await createClientQuery(nome_usuario, email, senha_hash);
     if (query == null) {
       handle404Error(req, res, "Deu erro");
     } else {
       handle200(req, res, "Sucesso", query);
     }
   } catch (error) {
-    console.error(
-      "Deu erro na função createCliente",
-      error
-    );
+    console.error("Deu erro na função createCliente", error);
   }
 };
 
@@ -63,22 +65,14 @@ const updateCliente = async (req, res) => {
     return handle400Error(req, res, "verifique as informações passadas");
   }
   try {
-    const query = await updateClienteQuery(
-      id,
-      nome_usuario,
-      email,
-      senha_hash
-    );
+    const query = await updateClienteQuery(id, nome_usuario, email, senha_hash);
     if (query == null) {
       handle404Error(req, res, "Deu erro");
     } else {
       handle200(req, res, "Sucesso", query);
     }
   } catch (error) {
-    console.error(
-      "Deu erro ao atualizar o cliente",
-      error
-    );
+    console.error("Deu erro ao atualizar o cliente", error);
   }
 };
 
