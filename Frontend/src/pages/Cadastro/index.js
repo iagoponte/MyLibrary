@@ -63,10 +63,6 @@ export default function Cadastro() {
     toast.success('Livro cadastrado com sucesso!');
   };
 
-  useEffect(()=>{
-    document.title = "Cadastro";
-},[])
-
   return (
     <div className="container mt-4">
       <h1>Cadastrar Livro</h1>
