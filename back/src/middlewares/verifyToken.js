@@ -40,5 +40,17 @@ const verifyAdminRoleToken = (req, res, next) => {
     });
 };
 
+//um teste aleatório pra criar um token de autorização.
+// const createAuthToken = (req, res, next) => {
+//     const {nome_usuario} = req.body;
+//     if (nome_usuario) {
+//         return jwt.sign({user}, jwtSecret, {
+//             usuario: user.nome_usuario,
+//             expiresIn: "1h"
+//         });
+//     }
+//     next();
+// }; 
 
-module.exports = {verifyToken, verifyAdminRoleToken};
+
+module.exports = {verifyToken, verifyAdminRoleToken, createAuthToken};

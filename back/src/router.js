@@ -1,6 +1,7 @@
 const express = require('express');
 const {getLivros, getLivrosById, createLivros, updateLivros, deleteLivros} = require('./controllers/livro');
 const { getClientes, createCliente, updateCliente, deleteCliente, clienteLogin } = require('./controllers/cliente');
+// const {verifyToken} = require('./middlewares/verifyToken')
 
 const router = express.Router();
 

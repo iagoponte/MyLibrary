@@ -118,7 +118,7 @@ const clienteLogin = async (req, res) => {
       return handle400Error(req, res, "Esse email de usuário não existe");
     }
     const checarSenha = await bcrypt.compare(senha_hash, checarEmail[0].senha_hash);
-    console.log(checarSenha);
+    // console.log(checarSenha);
     // await bcrypt.compare(senha_hash, checarEmail[0].hashedPassword)
     if (checarSenha) {
       const user = checarEmail[0];
@@ -131,9 +131,9 @@ const clienteLogin = async (req, res) => {
       // console.log(payload);
 
       const token = jwt.sign(payload, jwtSecret, { expiresIn: "2h" });
-      console.log(token)
+      // console.log(token)
 
-      return res.json({
+      res.json({
         id: user.id,
         nome: user.nome_usuario,
         email: user.email,
