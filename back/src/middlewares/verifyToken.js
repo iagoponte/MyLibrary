@@ -1,5 +1,4 @@
 // copiado e colado do backend do lucas - ainda não botei isso em canto nenhum, tô tentando entender primeiro
-
 require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');

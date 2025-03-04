@@ -1,6 +1,8 @@
 const {
   handle404Error,
   handle400Error,
+  handle500Error,
+  handle401Error,
 } = require("../middlewares/errorMiddleware");
 const { handle200 } = require("../middlewares/successMiddleware");
 const {
@@ -9,10 +11,11 @@ const {
   createClientQuery,
   updateClienteQuery,
   deleteClienteQuery,
+  searchClientesByEmailQuery,
 } = require("../models/clienteModel");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const jwtSecret = process.env.JWT_SECRET;
 
 const getClientes = async (req, res) => {
@@ -21,7 +24,7 @@ const getClientes = async (req, res) => {
     if (query == null) {
       return "NAO ACHOU";
     } else {
-      console.log("ois");
+      // console.log("ois");
       res.send(query);
     }
   } catch (error) {
@@ -41,7 +44,7 @@ const createCliente = async (req, res) => {
     nome_usuario,
     email
   );
-  console.log(checarClienteExistente);
+  // console.log(checarClienteExistente);
   if (checarClienteExistente !== null) {
     return handle400Error(
       req,
@@ -55,7 +58,7 @@ const createCliente = async (req, res) => {
 
     const query = await createClientQuery(nome_usuario, email, hashedPassword);
     if (query == null) {
-    handle404Error(req, res, `Deu erro, query==null`);
+      handle404Error(req, res, `Deu erro, query==null`);
     } else {
       handle200(req, res, `O usuário ${nome_usuario} foi criado!`, query);
     }
@@ -103,4 +106,65 @@ const deleteCliente = async (req, res) => {
   }
 };
 
-module.exports = { getClientes, createCliente, updateCliente, deleteCliente };
+const clienteLogin = async (req, res) => {
+  const { email, senha_hash } = req.body;
+  if (!req.body || !email || !senha_hash) {
+    return handle400Error(req, res, "Invalid request body");
+  }
+  try {
+    const checarEmail = await searchClientesByEmailQuery(email);
+    // console.log(checarEmail)
+    if (checarEmail === null) {
+      return handle400Error(req, res, "Esse email de usuário não existe");
+    }
+    const checarSenha = await bcrypt.compare(senha_hash, checarEmail[0].senha_hash);
+    console.log(checarSenha);
+    // await bcrypt.compare(senha_hash, checarEmail[0].hashedPassword)
+    if (checarSenha) {
+      const user = checarEmail[0];
+
+      const payload = {
+        id: user.id,
+        nome: user.nome_usuario,
+        email: user.email,
+      };
+      // console.log(payload);
+
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: "2h" });
+      console.log(token)
+
+      return res.json({
+        id: user.id,
+        nome: user.nome_usuario,
+        email: user.email,
+        token,
+      });
+    } else {
+      return handle401Error(
+        req,
+        res,
+        "Uuário ou senha inválidos, verifique as informações e tente novamente mais tarde"
+      );
+    }
+    // if (checarEmail != null) {
+    //   const senhaCorreta = await bcrypt.compare(checarEmail[0].senha, cliente.senha_hash);
+    //   if (!senhaCorreta) {
+    //     return handle400Error(req, res, "Senha incorreta");
+    //   }
+    // };
+  } catch (error) {
+    return handle500Error(
+      req,
+      res,
+      "Serviço indisponível, tente novamente mais tarde"
+    );
+  }
+};
+
+module.exports = {
+  getClientes,
+  createCliente,
+  updateCliente,
+  deleteCliente,
+  clienteLogin,
+};

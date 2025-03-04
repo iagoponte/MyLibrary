@@ -1,6 +1,6 @@
 const handle400Error = (req, res, message, responseObject) => {
     res.status(400).json({ status_code: '400', error: 'Error', message: `${message}`, response: responseObject });
-    
+
 };
 
 const handle404Error = (req, res, message) => {

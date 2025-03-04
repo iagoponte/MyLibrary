@@ -56,14 +56,21 @@ const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero) => {
 };
 
 const deleteLivrosQuery = async (id) => {
-  const query = await connection`DELETE FROM livros
+  try {
+    const query = await connection`DELETE FROM livros
         WHERE id = ${id} RETURNING *`;
-//   if (query.length === 0) {
-//     console.log("O livro foi deletado com sucesso");
-//     return query[0];
-//   }
-  return query;
-  ;
+    // console.log('Resultado da consulta (query):', query);
+    // console.log('Comprimento de query:', query.length);
+    if (query.length === 0) {
+      console.log("Livro não encontrado para deletar");
+      return null;
+    }
+    console.log("O livro foi deletado com sucesso");
+    return query[0]; // Retorna o livro deletado
+  } catch (error) {
+    console.log("error");
+    throw error;
+  }
 };
 
 module.exports = {

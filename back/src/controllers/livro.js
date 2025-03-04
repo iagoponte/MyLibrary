@@ -119,7 +119,7 @@ const deleteLivros = async (req, res) => {
   // }
   try {
     const query = await deleteLivrosQuery(id);
-    if (query.length === 0) {
+    if (query == null) {
       handle404Error(req, res, "Este livro não existe", query);
     } else {
       handle200(req, res, "Deletado!!");

@@ -31,6 +31,17 @@ const searchClientesByNomeEmailQuery = async (nome_usuario, email) => {
   return query;
 };
 
+const searchClientesByEmailQuery = async (email) => {
+  const query =
+    await connection`SELECT * FROM clientes l WHERE l.email = ${email}`;
+  if (query.length === 0) {
+    // console.log(query)
+    // console.error("Os livros não foi encontrado");
+    return null;
+  }
+  return query;
+};
+
 const updateClienteQuery = async (id, nome_usuario, email, senha_hash) => {
   try {
     const query = await connection`UPDATE clientes SET
@@ -60,6 +71,7 @@ module.exports = {
   getClientesQuery,
   createClientQuery,
   searchClientesByNomeEmailQuery,
+  searchClientesByEmailQuery,
   updateClienteQuery,
   deleteClienteQuery,
 };
