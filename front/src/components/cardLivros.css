@@ -1,0 +1,11 @@
+p {
+    margin: 0 !important;
+}
+.card:hover {
+    width: 270px !important;
+    height: auto;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+.card-container{
+    transition: all 0.2s;
+}

@@ -1,4 +1,6 @@
 .container-footer{
     background-color: #7B3B3B;
     color: #B9D7D9;
+    margin-top: 5px;
+    position: relative;
 }
