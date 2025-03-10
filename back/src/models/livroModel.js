@@ -12,16 +12,16 @@ const getLivrosQuery = async () => {
 const getLivrosByIdQuery = async (id) => {
   const query = await connection`SELECT * FROM livros l WHERE l.id = ${id}`;
   if (query.length === 0) {
-    console.error("Os livros não foi encontrado");
+    console.error("Os livros não foram encontrado");
     return null;
   }
   return query;
 };
 
-const createLivrosQuery = async (titulo, autor, ano_publicacao, genero) => {
+const createLivrosQuery = async (titulo, autor, ano_publicacao, genero, capa, sinopse, preco) => {
   try {
     const query =
-      await connection`INSERT INTO livros (titulo, autor, ano_publicacao, genero) VALUES (${titulo}, ${autor}, ${ano_publicacao}, ${genero}) RETURNING *`;
+      await connection`INSERT INTO livros (titulo, autor, ano_publicacao, genero, capa, sinopse, preco) VALUES (${titulo}, ${autor}, ${ano_publicacao}, ${genero}, ${capa}, ${sinopse}, ${preco}) RETURNING *`;
     return query[0];
   } catch (error) {
     throw error;
@@ -39,13 +39,16 @@ const searchLivrosByTituloAutorQuery = async (titulo, autor) => {
   return query;
 };
 
-const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero) => {
+const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero, capa, sinopse, preco) => {
   try {
     const query = await connection`UPDATE livros SET
     titulo = ${titulo},
     autor = ${autor},
     ano_publicacao = ${ano_publicacao},
-    genero = ${genero}
+    genero = ${genero},
+    sinopse = ${sinopse},
+    capa = ${capa},
+    preco = ${preco}
     WHERE
     id = ${id}
     RETURNING *`;
