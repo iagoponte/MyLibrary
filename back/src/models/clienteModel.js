@@ -9,6 +9,15 @@ const getClientesQuery = async () => {
   return query;
 };
 
+const getClienteByIdQuery = async (id) => {
+  const query = await connection`SELECT * FROM clientes l WHERE l.id = ${id} `;
+  if (query.length === 0) {
+    console.error("O usuário não foram encontrados");
+    return null;
+  }
+  return query[0];
+};
+
 const createClientQuery = async (nome_usuario, email, senha_hash) => {
   try {
     const query =
@@ -69,6 +78,7 @@ const deleteClienteQuery = async (id) => {
 
 module.exports = {
   getClientesQuery,
+  getClienteByIdQuery,
   createClientQuery,
   searchClientesByNomeEmailQuery,
   searchClientesByEmailQuery,

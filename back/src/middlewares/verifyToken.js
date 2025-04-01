@@ -2,22 +2,56 @@
 require('dotenv').config();
 const jwtSecret = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
+const { getClienteByIdQuery } = require('../models/clienteModel');
 
 
-const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization;
-    if (!token) {
-        return res.status(401).json({ message: 'Token de acesso não fornecido' });
+// const verifyToken = (req, res, next) => {
+//     const token = req.headers.authorization;
+//     if (!token) {
+//         return res.status(401).json({ message: 'Token de acesso não fornecido' });
+//     }
+//     const jwtToken = token.replace('Bearer ', '');
+//     jwt.verify(jwtToken, jwtSecret, (err, decoded) => {
+//         if (err) {
+//             return res.status(401).json({ message: 'Token de acesso inválido' });
+//         }
+//         req.user = decoded;
+//         res.json({
+//             message: "Token funcionou!"
+//         })
+//         next();
+//     });
+// };
+
+const verifyToken = async (req, res, next) => {
+    try {
+      const { authorization } = req.headers;
+
+      if (!authorization) {
+        return res.status(401).json({ error: "Não autorizado" })
+      }
+  
+      const token = authorization.split(" ")[1]
+  
+      const { id } = jwt.verify(token, jwtSecret)
+  
+      const cliente = await getClienteByIdQuery(id)
+  
+      if (!cliente) {
+        return res.status(401).json({ error: "Não autorizado" })
+      }
+  
+      const { senha_hash: _, ...loggedCliente } = cliente
+      console.log('aqui é após a retirada da senha', loggedCliente)
+  
+      req.cliente = loggedCliente
+  
+      next()
+    } catch (error) {
+      console.error(error);
+      return res.status(401).json({ error: "Não autorizado" })
     }
-    const jwtToken = token.replace('Bearer ', '');
-    jwt.verify(jwtToken, jwtSecret, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Token de acesso inválido' });
-        }
-        req.user = decoded;
-        next();
-    });
-};
+  }
 
 const verifyAdminRoleToken = (req, res, next) => {
     const token = req.headers.authorization;
@@ -53,4 +87,4 @@ const verifyAdminRoleToken = (req, res, next) => {
 // }; 
 
 
-module.exports = {verifyToken, verifyAdminRoleToken, createAuthToken};
+module.exports = {verifyToken, verifyAdminRoleToken};
