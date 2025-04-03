@@ -18,7 +18,7 @@ const getLivros = async (req, res) => {
     if (query == null) {
       return "NAO ACHOU";
     } else {
-      console.log("ois");
+      // console.log("ois");
       res.status(200).json(query);
     }
   } catch (error) {
@@ -55,7 +55,7 @@ const createLivros = async (req, res) => {
     autor,
     titulo
   );
-  console.log(checarLivroExistente);
+  console.log(autor, titulo);
 
   if (checarLivroExistente !== null) {
     return handle400Error(
@@ -65,6 +65,7 @@ const createLivros = async (req, res) => {
     );
   }
   try {
+    // : postgres.RowList<postgres.Row[]>
     const query = await createLivrosQuery(
       titulo,
       autor,
@@ -74,6 +75,7 @@ const createLivros = async (req, res) => {
       sinopse,
       preco
     );
+    // console.log(query);
     if (query == null) {
       handle404Error(req, res, "Deu erro");
     } else {
