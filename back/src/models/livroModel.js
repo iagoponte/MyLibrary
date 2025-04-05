@@ -2,7 +2,7 @@ const connection = require("./connection");
 
 const getLivrosQuery = async () => {
   const query = await connection `SELECT 
-    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse, l.created_at 
+    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse, l.quantidade, l.created_at 
     FROM livros l
     JOIN genero g ON l.genero_id = g.id
     ORDER BY l.id ASC;`;
@@ -17,7 +17,7 @@ const getLivrosQuery = async () => {
 const getLivrosByIdQuery = async (id) => {
   const query = 
     await connection `SELECT 
-    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse, l.created_at, l.quantidade 
+    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse,  l.quantidade, l.created_at
     FROM livros l
     JOIN genero g ON l.genero_id = g.id
     WHERE l.id = ${id}

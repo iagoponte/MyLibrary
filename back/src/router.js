@@ -10,12 +10,12 @@ router.post('/cliente/login', clienteLogin); // primeiro devo logar, pra obter o
 router.post('/cliente/auth', verifyToken); //teste de autenticação do token.
 
 
-router.get('/livros', getLivros);
+router.get('/livros',  getLivros);
 router.get('/livros/:id', getLivrosById)
 // estas rotas aqui precisam, também, de verificação para o administrador.
-router.post('/livros/create',  createLivros)
-router.put('/livros/atualizar/:id', updateLivros)
-router.delete('/livros/apagar/:id', deleteLivros)
+router.post('/livros/create', verifyToken, createLivros)
+router.put('/livros/atualizar/:id', verifyToken, updateLivros)
+router.delete('/livros/apagar/:id', verifyToken, deleteLivros)
 
 // colocar estas rotas, futuramente, aninhadas numa rota de verificação ("/auth/....")
 router.get('/clientes', verifyToken, getClientes)

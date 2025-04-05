@@ -57,10 +57,13 @@ const createCliente = async (req, res) => {
     const hashedPassword = await bcrypt.hash(senha_hash, saltRounds);
 
     const query = await createClientQuery(nome_usuario, email, hashedPassword);
+    const {senha_hash: _, ...novoUser} = query;
+    console.log('cliente criado', novoUser);
+
     if (query == null) {
       handle404Error(req, res, `Deu erro, query==null`);
     } else {
-      handle200(req, res, `O usuário ${nome_usuario} foi criado!`, query);
+      handle200(req, res, `O usuário ${nome_usuario} foi criado!`, novoUser);
     }
   } catch (error) {
     console.error("Deu erro na função createCliente", error);
