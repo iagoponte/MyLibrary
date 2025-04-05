@@ -120,23 +120,27 @@ const clienteLogin = async (req, res) => {
     const checarSenha = await bcrypt.compare(senha_hash, checarEmail[0].senha_hash);
     // console.log(checarSenha);
     // await bcrypt.compare(senha_hash, checarEmail[0].hashedPassword)
+
     if (checarSenha) {
       const user = checarEmail[0];
 
       const payload = {
         id: user.id,
         nome: user.nome_usuario,
-        email: user.email,
-      };
-      // console.log(payload);
+        email: user.email, 
+        role: user.email === "iago.ponte@gmail.com" ? "admin" : "usuario"
+      }
 
       const token = jwt.sign(payload, jwtSecret, { expiresIn: "2h" });
+      // console.log(payload);
       // console.log(token)
+      
 
       res.json({
-        id: user.id,
-        nome: user.nome_usuario,
-        email: user.email,
+        id: payload.id,
+        nome: payload.nome_usuario,
+        email: payload.email,
+        role: payload.role,
         token,
       });
     } else {
