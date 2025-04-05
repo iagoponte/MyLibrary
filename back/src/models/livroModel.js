@@ -17,7 +17,7 @@ const getLivrosQuery = async () => {
 const getLivrosByIdQuery = async (id) => {
   const query = 
     await connection `SELECT 
-    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse, l.created_at 
+    l.id, l.titulo, l.autor, l.ano_publicacao, g.tipo AS genero, l.capa, l.preco, l.sinopse, l.created_at, l.quantidade 
     FROM livros l
     JOIN genero g ON l.genero_id = g.id
     WHERE l.id = ${id}
@@ -30,7 +30,7 @@ const getLivrosByIdQuery = async (id) => {
   return query;
 };
 
-const createLivrosQuery = async (titulo, autor, ano_publicacao, genero, capa, sinopse, preco) => {
+const createLivrosQuery = async (titulo, autor, ano_publicacao, genero, capa, sinopse, preco, quantidade) => {
   try {
     const query =
       await connection `WITH novo_genero AS (
@@ -39,7 +39,7 @@ const createLivrosQuery = async (titulo, autor, ano_publicacao, genero, capa, si
       ON CONFLICT (tipo) DO NOTHING 
       RETURNING id
     )
-    INSERT INTO livros (titulo, autor, ano_publicacao, genero_id, capa, sinopse, preco)
+    INSERT INTO livros (titulo, autor, ano_publicacao, genero_id, capa, sinopse, preco, quantidade)
     VALUES (
       ${titulo}, 
       ${autor}, 
@@ -47,7 +47,8 @@ const createLivrosQuery = async (titulo, autor, ano_publicacao, genero, capa, si
       COALESCE((SELECT id FROM novo_genero), (SELECT id FROM genero WHERE tipo = ${genero})), 
       ${capa}, 
       ${sinopse}, 
-      ${preco}
+      ${preco},
+      ${quantidade}
       ) RETURNING *;`;
       // `INSERT INTO livros (titulo, autor, ano_publicacao, genero, capa, sinopse, preco) VALUES (${titulo}, ${autor}, ${ano_publicacao}, ${genero}, ${capa}, ${sinopse}, ${preco}) RETURNING *`;
     return query;
@@ -69,7 +70,7 @@ const searchLivrosByTituloAutorQuery = async (autor, titulo ) => {
   return query;
 };
 
-const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero, capa, sinopse, preco) => {
+const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero, capa, sinopse, preco, quantidade) => {
   try {
     const query = await connection` 
     WITH novo_genero AS (
@@ -85,7 +86,8 @@ const updateLivrosQuery = async (id, titulo, autor, ano_publicacao, genero, capa
     genero_id = COALESCE((SELECT id FROM novo_genero), (SELECT id FROM genero WHERE tipo = ${genero})),
     sinopse = ${sinopse},
     capa = ${capa},
-    preco = ${preco}
+    preco = ${preco},
+    quantidade = ${quantidade}
     WHERE
     id = ${id}
     RETURNING *`;

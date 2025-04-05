@@ -106,6 +106,7 @@ const popularBd = async (req, res) => {
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0QbeTdJt9pDB6bgoeABV7kWdfM81TQwSKkA&s",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 16,
       },
       {
         titulo: "Harry Potter e a Câmara Secreta",
@@ -115,6 +116,7 @@ const popularBd = async (req, res) => {
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQORELAOczSIAp-AvYQ_X0Ey-9cPrrxvmuz24gM1y7FjPuh8bxu106JOp_c6jD-0qMLqyQ&usqp=CAU",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 100,
       },
       {
         titulo: "Harry Potter e o Prisioneiro de Azkaban",
@@ -124,6 +126,7 @@ const popularBd = async (req, res) => {
         capa: "https://m.media-amazon.com/images/I/81yhVdW-MWL._AC_UF1000,1000_QL80_.jpg",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 54,
       },
       {
         titulo: "Harry Potter e o Cálice de Fogo",
@@ -133,6 +136,7 @@ const popularBd = async (req, res) => {
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvPGvwqwqoi2MA7nCDJ71SHf_CamOjt9tUHA&s",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 40,
       },
       {
         titulo: "Harry Potter e a Ordem da Fênix",
@@ -142,6 +146,7 @@ const popularBd = async (req, res) => {
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZ4zC56yP5yWtOGhUpuZh17MDsKjTxKzyhQ&s",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 12,
       },
       {
         titulo: "Harry Potter e o Enigma do Príncipe",
@@ -151,6 +156,7 @@ const popularBd = async (req, res) => {
         capa: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiUvaIk21qOpvl01odRHy6jjipjndLE3XlXg&s",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 10,
       },
       {
         titulo: "Harry Potter e as Relíquias da Morte",
@@ -160,6 +166,7 @@ const popularBd = async (req, res) => {
         capa: "https://m.media-amazon.com/images/I/81LVlvKAgsL._AC_UF1000,1000_QL80_.jpg",
         sinopse: "Magia muita magia",
         preco: 49.9,
+        quantidade: 8,
       },
     ];
 
@@ -186,7 +193,8 @@ const popularBd = async (req, res) => {
           livro.genero,
           livro.capa,
           livro.sinopse,
-          livro.preco
+          livro.preco,
+          livro.quantidade
         )
       )
     );

@@ -47,8 +47,8 @@ const getLivrosById = async (req, res) => {
 };
 
 const createLivros = async (req, res) => {
-  const { titulo, autor, ano_publicacao, genero, capa, sinopse, preco } = req.body;
-  if (!titulo || !autor || !ano_publicacao || !genero || !capa || !sinopse || !preco) {
+  const { titulo, autor, ano_publicacao, genero, capa, sinopse, preco, quantidade } = req.body;
+  if (!titulo || !autor || !ano_publicacao || !genero || !capa || !sinopse || !preco || !quantidade) {
     return handle400Error(req, res, "verifique as info");
   }
   const checarLivroExistente = await searchLivrosByTituloAutorQuery(
@@ -73,7 +73,8 @@ const createLivros = async (req, res) => {
       genero,
       capa,
       sinopse,
-      preco
+      preco,
+      quantidade
     );
     // console.log(query);
     if (query == null) {
@@ -91,8 +92,8 @@ const createLivros = async (req, res) => {
 
 const updateLivros = async (req, res) => {
   const id = req.params.id;
-  const { titulo, autor, ano_publicacao, genero, capa, sinopse, preco } = req.body;
-  if (!ano_publicacao || !titulo || !ano_publicacao || !genero || !capa || !sinopse || !preco) {
+  const { titulo, autor, ano_publicacao, genero, capa, sinopse, preco, quantidade } = req.body;
+  if (!ano_publicacao || !titulo || !ano_publicacao || !genero || !capa || !sinopse || !preco || !quantidade) {
     return handle400Error(req, res, "verifique as info");
   }
   try {
@@ -104,7 +105,8 @@ const updateLivros = async (req, res) => {
       genero,
       capa,
       sinopse,
-      preco
+      preco,
+      quantidade
     );
     if (query == null) {
       handle404Error(req, res, "Deu erro");
